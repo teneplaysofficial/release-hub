@@ -37,4 +37,5 @@ try {
   await runHook('after:init');
 } catch (error) {
   sylog.error((error as Error).message);
+  process.exit(1);
 }

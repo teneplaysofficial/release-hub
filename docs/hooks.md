@@ -42,8 +42,6 @@ You can hook into almost every major lifecycle event:
 | `after:tag`          | After a Git tag is created.                     |
 | `before:push`        | Before pushing to the remote repository.        |
 | `after:push`         | After push completes.                           |
-| `before:release`     | Before performing the release process.          |
-| `after:release`      | After release finishes.                         |
 | `before:publish`     | Before any publishing begins.                   |
 | `after:publish`      | After publishing completes.                     |
 | `before:publish:npm` | Before publishing to npm.                       |
@@ -77,25 +75,66 @@ They’ll run sequentially, in the order they appear.
 
 ## Examples
 
+### Initialization setup
+
+```json
+{
+  "hooks": {
+    "before:init": "echo '🧰 Setting up project environment...'",
+    "after:init": "npm install && echo '✅ Project setup complete'"
+  }
+}
+```
+
+### Generate changelog after version bump
+
+```json
+{
+  "hooks": {
+    "after:version": "npm run changelog"
+  }
+}
+```
+
+### Auto-tag after commit
+
+```json
+{
+  "hooks": {
+    "after:commit": [
+      "git tag -a v$(node -p \"require('./package.json').version\") -m 'Auto tag'",
+      "echo '🏷️ Tag created automatically'"
+    ]
+  }
+}
+```
+
+### Push and log after tagging
+
+```json
+{
+  "hooks": {
+    "after:tag": ["git push origin main --tags", "echo '🚀 Tags pushed to remote repository'"]
+  }
+}
+```
+
+### Clean build and prepare before versioning
+
+```json
+{
+  "hooks": {
+    "before:version": ["rm -rf dist", "npm run build", "echo '✨ Build ready for version bump'"]
+  }
+}
+```
+
 ### Run checks before committing
 
 ```json
 {
   "hooks": {
     "before:commit": ["npm run lint", "npm test"]
-  }
-}
-```
-
-### Auto-tag and notify after release
-
-```json
-{
-  "hooks": {
-    "after:release": [
-      "git tag -a v$(node -p \"require('./package.json').version\") -m 'Release tag'",
-      "curl -X POST https://hooks.slack.com/... -d '{\"text\":\"🎉 New release deployed!\"}'"
-    ]
   }
 }
 ```
@@ -109,30 +148,6 @@ They’ll run sequentially, in the order they appear.
     "after:publish:npm": "echo '✅ npm publish complete'",
     "before:publish:jsr": "echo '🚀 Publishing to JSR...'",
     "after:publish:jsr": "echo '✅ JSR publish complete'"
-  }
-}
-```
-
-### Push changes and notify after release
-
-```json
-{
-  "hooks": {
-    "after:release": [
-      "git push origin main --tags",
-      "echo '📤 Release pushed!'",
-      "curl -X POST https://hooks.slack.com/... -d '{\"text\": \"🎉 New release deployed!\"}'"
-    ]
-  }
-}
-```
-
-### Cleanup temporary files after release
-
-```json
-{
-  "hooks": {
-    "after:release": ["rm -rf dist/temp", "echo '🧹 Cleaned up build artifacts'"]
   }
 }
 ```

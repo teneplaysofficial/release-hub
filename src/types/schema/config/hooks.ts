@@ -1,7 +1,7 @@
 import z from 'zod';
 
 type HookPhase = 'before' | 'after';
-type HookEvent = 'init' | 'version' | 'commit' | 'tag' | 'push' | 'release' | 'publish';
+type HookEvent = 'init' | 'version' | 'commit' | 'tag' | 'push' | 'publish';
 type HookPublishTarget = 'npm' | 'jsr';
 
 export type HookName = `${HookPhase}:${HookEvent}` | `${HookPhase}:publish:${HookPublishTarget}`;

@@ -23,7 +23,9 @@ export const runCommand = async (
       child.stdout?.on('data', (data) => (output += data.toString()));
       child.stderr?.on('data', (data) => (output += data.toString()));
       child.on('close', (code) =>
-        code === 0 ? resolve(output.trim()) : reject(new Error(output)),
+        code === 0
+          ? resolve(output.trim())
+          : reject(new Error(`Command failed with exit code ${code}:\n${output}`)),
       );
     } else {
       child.on('close', (code) =>

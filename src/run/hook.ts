@@ -22,5 +22,6 @@ export const runHook = async (hook: HookName) => {
     }
   } catch (error) {
     sylog.error(`${hook} hook failed: ${(error as Error).message}`);
+    throw error;
   }
 };

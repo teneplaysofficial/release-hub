@@ -36,7 +36,7 @@
     "schema"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "engineStrict": true,
   "type": "module",

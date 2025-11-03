@@ -67,9 +67,7 @@ export default async function interactive() {
 
   if (answers.isPreRelease) releaseType = `pre${releaseType}`;
 
-  const upVer = await version.newVersions(releaseType, answers.preReleaseType);
+  const newVersions = await version.newVersions(releaseType, answers.preReleaseType);
 
-  console.log(upVer);
-
-  await writeVersion(upVer);
+  await writeVersion(newVersions);
 }
