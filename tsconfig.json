@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2022",
+    "target": "es2024",
     "module": "esnext",
     "moduleResolution": "node",
     "outDir": "dist",
     "declaration": true,
-    "declarationMap": true,
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -13,6 +12,6 @@
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["src", "bin"],
+  "include": ["src", "bin", "scripts", "test"],
   "exclude": ["node_modules", "dist"]
 }

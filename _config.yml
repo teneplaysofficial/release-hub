@@ -1,0 +1,47 @@
+title: Release Hub
+description: One hub to manage every release
+theme: just-the-docs
+url: https://teneplaysofficial.github.io
+baseurl: /release-hub
+repository: teneplaysofficial/release-hub
+
+permalink: pretty
+
+source: docs
+
+defaults:
+  - scope:
+      path: ''
+      type: pages
+    values:
+      layout: home
+
+search:
+  heading_level: 3
+  previews: 4
+
+aux_links_new_tab: true
+aux_links:
+  NPM: https://www.npmjs.com/package/release-hub
+  GitHub: https://github.com/teneplaysofficial/release-hub
+
+gh_edit_link: true
+gh_edit_link_text: 'Edit this page on GitHub.'
+gh_edit_repository: 'https://github.com/teneplaysofficial/release-hub'
+gh_edit_branch: 'main'
+gh_edit_view_mode: 'edit'
+gh_edit_source: 'docs'
+
+back_to_top: true
+back_to_top_text: 'Back to top'
+
+kramdown:
+  input: GFM
+  parse_block_html: true
+  parse_span_html: true
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+  - jekyll-include-cache
+  - jekyll-sitemap

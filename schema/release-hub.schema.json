@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "description": "Path to the JSON schema for IDE autocompletion.",
+      "type": "string"
+    },
+    "dryRun": {
+      "description": "Run commands in dry-run mode without making actual changes.",
+      "default": false,
+      "type": "boolean"
+    },
+    "defaultReleaseType": {
+      "description": "Default release type",
+      "default": "patch",
+      "type": "string",
+      "enum": ["major", "minor", "patch"]
+    },
+    "targets": {
+      "default": {
+        "node": true,
+        "jsr": false,
+        "deno": false
+      },
+      "description": "Defines which manifest files to update their version fields.",
+      "type": "object",
+      "properties": {
+        "node": {
+          "description": "Update version in package.json (Node.js).",
+          "default": true,
+          "type": "boolean"
+        },
+        "jsr": {
+          "description": "Update version in jsr.json (JSR registry).",
+          "default": false,
+          "type": "boolean"
+        },
+        "deno": {
+          "description": "Update version in deno.json or deno.jsonc (Deno project).",
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sync": {
+      "description": "Controls version sync behavior for targets.",
+      "default": true,
+      "anyOf": [
+        {
+          "description": "Whether to sync versions across all or none of the targets.",
+          "type": "boolean"
+        },
+        {
+          "description": "Sync only specific groups of targets.",
+          "type": "array",
+          "items": {
+            "description": "A group of targets to sync together.",
+            "minItems": 2,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["node", "jsr", "deno"]
+            }
+          }
+        }
+      ]
+    },
+    "hooks": {
+      "description": "Shell commands to run at various lifecycle stages. Each key is a lifecycle hook name and the value is the command(s) to run.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^(before|after):(init|version|commit|tag|push|publish(?::(npm|jsr))?)$"
+      },
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}

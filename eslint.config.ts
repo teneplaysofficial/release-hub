@@ -6,6 +6,7 @@ import json from '@eslint/json';
 import markdown from '@eslint/markdown';
 import { defineConfig } from 'eslint/config';
 import { includeIgnoreFile } from '@eslint/compat';
+import importPlugin from 'eslint-plugin-import';
 
 const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url));
 
@@ -16,8 +17,12 @@ export default defineConfig([
     plugins: { js },
     extends: ['js/recommended'],
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
+    settings: {
+      'import/resolver': { typescript: true, node: true },
+    },
   },
   tseslint.configs.recommended,
+  importPlugin.flatConfigs.recommended,
   { files: ['**/*.json'], plugins: { json }, language: 'json/json', extends: ['json/recommended'] },
   {
     files: ['**/*.json5'],
@@ -30,5 +35,8 @@ export default defineConfig([
     plugins: { markdown },
     language: 'markdown/gfm',
     extends: ['markdown/recommended'],
+    rules: {
+      'markdown/no-missing-label-refs': 'off',
+    },
   },
 ]);

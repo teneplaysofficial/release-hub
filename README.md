@@ -6,6 +6,8 @@ _One hub to manage every release_
 
 </div>
 
+[![CI](https://github.com/teneplaysofficial/release-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/teneplaysofficial/release-hub)
+
 ## Overview
 
 `release-hub` is a smart, unified release management CLI that keeps your versions consistent across ecosystems.

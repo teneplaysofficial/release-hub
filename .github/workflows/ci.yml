@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: |
+          yarn gen
+          yarn fmt .
+      - run: |
+          isDiff=$(git --no-pager diff --color)
+          if [ -n "$isDiff" ]; then
+            echo "The following files are not up to date:"
+            echo ""
+            git diff --name-only | sed 's/^/  - /'
+            echo ""
+            echo "::error::Generated or formatted files are out of date. Please run 'yarn gen' and 'yarn fmt .' locally."
+            exit 1
+          else
+            echo "No changes detected. All generated files are up to date."
+          fi
+
+  fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn fmt:check
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
