@@ -18,6 +18,10 @@ export const runCommand = async (
   return new Promise((resolve, reject) => {
     const child = spawn(cmd, { shell, stdio, cwd, env });
 
+    child.on('error', (err) => {
+      reject(new Error(`Failed to execute command: ${cmd}\n${err.message}`));
+    });
+
     if (stdio === 'pipe') {
       let output = '';
       child.stdout?.on('data', (data) => (output += data.toString()));
