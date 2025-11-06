@@ -7,6 +7,10 @@ _One hub to manage every release_
 </div>
 
 [![CI](https://github.com/teneplaysofficial/release-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/teneplaysofficial/release-hub)
+[![Docs](https://img.shields.io/badge/Docs-available-brightgreen?logo=readthedocs)](https://teneplaysofficial.github.io/release-hub)
+[![release-hub version](https://img.shields.io/github/v/release/teneplaysofficial/release-hub?include_prereleases&sort=semver&color=brightgreen&logo=semver&label=Version)](https://github.com/teneplaysofficial/release-hub/releases)
+[![jsDelivr hits](https://img.shields.io/jsdelivr/npm/hm/release-hub?color=brightgreen&logo=jsdelivr&label=jsDelivr)](https://www.jsdelivr.com/package/npm/release-hub)
+[![License](https://img.shields.io/github/license/teneplaysofficial/release-hub?color=brightgreen&logo=spdx&label=LICENSE)](https://github.com/teneplaysofficial/release-hub/blob/main/LICENSE)
 
 ## Overview
 
