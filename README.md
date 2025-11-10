@@ -1,95 +1,106 @@
 <div align="center">
 
-# Release Hub
+# 🚀 Release Hub
 
-_One hub to manage every release_
-
-</div>
+### _One hub to manage every release_
 
 [![CI](https://github.com/teneplaysofficial/release-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/teneplaysofficial/release-hub)
 [![Docs](https://img.shields.io/badge/Docs-available-brightgreen?logo=readthedocs)](https://teneplaysofficial.github.io/release-hub)
-[![release-hub version](https://img.shields.io/github/v/release/teneplaysofficial/release-hub?include_prereleases&sort=semver&color=brightgreen&logo=semver&label=Version)](https://github.com/teneplaysofficial/release-hub/releases)
-[![jsDelivr hits](https://img.shields.io/jsdelivr/npm/hm/release-hub?color=brightgreen&logo=jsdelivr&label=jsDelivr)](https://www.jsdelivr.com/package/npm/release-hub)
-[![License](https://img.shields.io/github/license/teneplaysofficial/release-hub?color=brightgreen&logo=spdx&label=LICENSE)](https://github.com/teneplaysofficial/release-hub/blob/main/LICENSE)
+[![Version](https://img.shields.io/github/v/release/teneplaysofficial/release-hub?include_prereleases&sort=semver&color=brightgreen&logo=semver)](https://github.com/teneplaysofficial/release-hub/releases)
+[![jsDelivr](https://img.shields.io/jsdelivr/npm/hm/release-hub?color=brightgreen&logo=jsdelivr&label=jsDelivr)](https://www.jsdelivr.com/package/npm/release-hub)
 
-## Overview
+</div>
 
-`release-hub` is a smart, unified release management CLI that keeps your versions consistent across ecosystems.
+## 📦 Overview
+**Release Hub** is your unified toolkit for automating and managing project releases — from versioning to changelogs, CI publishing, and beyond.  
+Built to simplify the release process, it integrates seamlessly with modern workflows.
 
-It supports:
+## 💡 Why Release Hub?
 
-- **`package.json`** → npm, Node.js
-- **`deno.json` / `deno.jsonc`** → Deno
-- **`jsr.json`** → JSR ecosystem
+Unlike traditional release tools, **Release Hub** is built to be both **developer-friendly** and **CI-smart**, offering a perfect balance between automation and control.
 
-With a single command, you can:
+### 🧭 Key Advantages
 
-- Bump versions across all files
-- Generate changelogs from conventional commits
-- Sync metadata automatically
-- Integrate into CI/CD (GitHub Actions, etc.)
+- **Unified workflow** – Manage versioning, changelogs, and publishing from one CLI  
+- **Zero-config start** – Works out of the box, yet fully configurable when needed  
+- **Modern design** – Built with TypeScript, Zod, and JSON Schema for strong validation  
+- **Better DX** – Interactive prompts, colored logs, and intuitive command structure  
+- **Schema-powered configs** – Instant IntelliSense in VS Code, WebStorm, and more  
+- **Seamless CI/CD** – Deep integration with GitHub Actions and npm publishing  
+- **Extensible** – Designed with hooks and plugin-friendly architecture  
 
-## Features
+### ⚖️ Compared to Other Tools
 
-- **Multi-format support:** Works with `package.json`, `deno.json`, `jsr.json`, and more
-- **Semantic versioning:** `major`, `minor`, `patch`, or auto via commits
-- **Auto-sync:** Keeps all manifest versions in sync
-- **Custom release hooks:** Run scripts before/after bumps
-- **Conventional Commit aware:** Generate changelogs automatically
-- **CI-friendly:** Ideal for GitHub Actions, GitLab, or local workflows
+| Feature | Release Hub | release-it | semantic-release |
+|----------|--------------|-------------|------------------|
+| Interactive CLI | ✅ Yes | ⚙️ Partial | ❌ No |
+| JSON Schema config | ✅ Full | ❌ No | ❌ No |
+| Intelligent changelog | ✅ Structured | ⚙️ Basic | ✅ Auto |
+| GitHub Action integration | ✅ Native | ⚙️ Manual | ✅ Native |
+| Manual + CI release support | ✅ Both | ✅ Both | ❌ CI-only |
+| Extensible hooks | ✅ Yes | ✅ Yes | ⚙️ Limited |
+| Simplicity | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ |
 
-## Documentation
+**In short:** Release Hub gives you **automation when you want it** and **control when you need it** — no overkill, no boilerplate.
 
-For full documentation, visit [teneplaysofficial.github.io](https://teneplaysofficial.github.io/release-hub)
 
-## Install
+## ✨ Features
+- 🔧 **Automated versioning** – consistent semantic releases with minimal setup  
+- 🧩 **Schema-based config** – full JSON Schema support for IDE IntelliSense  
+- 📜 **Smart changelogs** – generate structured changelogs from commits  
+- 🚀 **GitHub Actions ready** – integrates easily into CI/CD pipelines  
+- 💬 **Interactive mode** – guide-driven release flow for manual runs  
 
-### Global Install
+## 📖 Documentation
+Comprehensive docs are available at:  
+👉 [**teneplaysofficial.github.io/release-hub**](https://teneplaysofficial.github.io/release-hub)
 
-Install `release-hub` globally to use it anywhere:
+## 🧠 Example Usage
 
-```sh
-npm install -g release-hub
+```bash
+# Run an interactive release
+npx release-hub
 ```
 
-Then run:
+🧩 Configuration
 
-```sh
-release-hub
-```
-
-### Local (Dev Dependency)
-
-You can install `release-hub` locally as a dev dependency:
-
-```sh
-npm i -D release-hub
-```
-
-Add a convenient script to your `package.json`:
+Release Hub uses a release-hub.config.json (or .js, .ts, .jsonc) file.
 
 ```json
 {
-  "scripts": {
-    "release": "release-hub"
+  "$schema": "https://teneplaysofficial.github.io/release-hub/schema/release-hub.schema.json",
+  "version": true,
+  "changelog": true,
+  "publish": {
+    "npm": true,
+    "github": true
   }
 }
 ```
 
-Run the release command:
+🧰 Integration with CI
 
-```sh
-npm run release
-```
+In your GitHub Actions workflow:
 
-### Using npx (No Install Needed)
+- uses: actions/checkout@v4
+  with:
+    fetch-depth: 0 # fetch full history for changelogs
+- uses: actions/setup-node@v4
+  with:
+    node-version: 22
+    cache: yarn
+- run: npx release-hub publish
 
-Run directly without installing:
+💚 Contributing
 
-```sh
-npx release-hub
-```
+Contributions, ideas, and feedback are always welcome!
+Please check out the contributing guide before submitting a PR.
 
-## License
+📜 License
 
-This project is licensed under the [Apache-2.0 License](./LICENSE)
+Licensed under the MIT License.
+
+<div align="center">🛠️ Built with passion by @teneplaysofficial
+Made for developers who love clean releases.
+
+</div>
