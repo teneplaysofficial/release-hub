@@ -11,6 +11,7 @@ _One hub to manage every release_
 [![release-hub version](https://img.shields.io/github/v/release/teneplaysofficial/release-hub?include_prereleases&sort=semver&color=brightgreen&logo=semver&label=Version)](https://github.com/teneplaysofficial/release-hub/releases)
 [![jsDelivr hits](https://img.shields.io/jsdelivr/npm/hm/release-hub?color=brightgreen&logo=jsdelivr&label=jsDelivr)](https://www.jsdelivr.com/package/npm/release-hub)
 [![License](https://img.shields.io/github/license/teneplaysofficial/release-hub?color=brightgreen&logo=spdx&label=LICENSE)](https://github.com/teneplaysofficial/release-hub/blob/main/LICENSE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fteneplaysofficial%2Frelease-hub.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fteneplaysofficial%2Frelease-hub?ref=badge_shield)
 
 ## Overview
 
@@ -93,3 +94,6 @@ npx release-hub
 ## License
 
 This project is licensed under the [Apache-2.0 License](./LICENSE)
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fteneplaysofficial%2Frelease-hub.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fteneplaysofficial%2Frelease-hub?ref=badge_large)
