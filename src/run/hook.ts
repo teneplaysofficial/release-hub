@@ -13,7 +13,7 @@ export const runHook = async (hook: HookName) => {
   }
 
   if (config.dryRun) {
-    sylog.info('Would execute ${ansi.brightCyan(hook)} hook', { label: 'Dry-run' });
+    sylog.info(`Would execute ${ansi.brightCyan.apply(hook)} hook`, { label: 'Dry-run' });
     return;
   }
 
