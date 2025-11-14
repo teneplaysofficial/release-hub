@@ -8,7 +8,7 @@ export const runHook = async (hook: HookName) => {
   const rawCmd = config.hooks?.[hook];
 
   if (!rawCmd) {
-    sylog.warn(`No command(s) defined for ${ansi.brightCyan.apply(hook)} hook - skipping.`);
+    sylog.debug(`No command(s) defined for ${ansi.brightCyan.apply(hook)} hook - skipping.`);
     return;
   }
 

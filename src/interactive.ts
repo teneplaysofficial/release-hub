@@ -6,7 +6,7 @@ import { version } from './version';
 import { writeVersion } from './write';
 
 export default async function interactive() {
-  sylog.info('Starting interactive mode');
+  sylog.debug('Starting interactive mode');
 
   await version.logCurrentVersions();
 
