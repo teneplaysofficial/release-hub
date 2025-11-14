@@ -6,7 +6,7 @@ import { version } from './version';
 import { writeVersion } from './write';
 
 export default async function interactive() {
-  sylog.info('Starting interactive mode');
+  sylog.debug('Starting interactive mode');
 
   await version.logCurrentVersions();
 
@@ -68,6 +68,8 @@ export default async function interactive() {
   if (answers.isPreRelease) releaseType = `pre${releaseType}`;
 
   const newVersions = await version.newVersions(releaseType, answers.preReleaseType);
+
+  await version.logNewVersions(newVersions);
 
   await writeVersion(newVersions);
 }

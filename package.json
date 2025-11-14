@@ -91,7 +91,7 @@
     "inquirer": "^12.10.0",
     "jiti": "^2.6.1",
     "semver": "^7.7.3",
-    "sylog": "^1.0.0",
+    "sylog": "^2.0.0",
     "zod": "^4.1.12"
   },
   "devDependencies": {

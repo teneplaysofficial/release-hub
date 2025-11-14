@@ -25,6 +25,10 @@ try {
 
   await runHook('before:init');
 
+  if (flags.has('--debug')) {
+    sylog.enableDebug();
+  }
+
   if (flags.has('--dry-run')) {
     config.dryRun = true;
     sylog.info('Dry Run Mode Enabled No actual changes will be made, all operations are simulated');

@@ -8,11 +8,16 @@ export const runHook = async (hook: HookName) => {
   const rawCmd = config.hooks?.[hook];
 
   if (!rawCmd) {
-    sylog.warn(`No command(s) defined for ${ansi.brightCyan.apply(hook)} hook - skipping.`);
+    sylog.debug(`No command(s) defined for ${ansi.brightCyan.apply(hook)} hook - skipping.`);
     return;
   }
 
-  sylog.info(`Executing the ${ansi.brightCyan.apply(hook)} hook`);
+  if (config.dryRun) {
+    sylog.info(`Would execute ${ansi.brightCyan.apply(hook)} hook`, { label: 'Dry-run' });
+    return;
+  }
+
+  sylog.debug(`Executing the ${ansi.brightCyan.apply(hook)} hook`);
 
   const cmds = Array.isArray(rawCmd) ? rawCmd : [rawCmd];
 

@@ -39,10 +39,10 @@ async function loadConfig(cwd = process.cwd()) {
       const mod = (await jiti.import(fullPath)) as Record<string, unknown>;
       const exported = mod.default ?? mod;
       if (typeof exported === 'object' && exported !== null) userConfig = exported as Config;
-      else sylog.warn(`Skipped invalid export in ${file}, expected an object.`);
+      else sylog.debug(`Skipped invalid export in ${file}, expected an object.`);
     }
 
-    sylog.info(`Loaded configuration from ${file}`);
+    sylog.info(`Loaded configuration from ${file}`, { label: 'CONFIG' });
     break;
   }
 
@@ -52,9 +52,11 @@ async function loadConfig(cwd = process.cwd()) {
       const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
       if (pkg['release-hub']) {
         userConfig = pkg['release-hub'];
-        sylog.info('Loaded configuration from package.json (release-hub field)');
-      } else sylog.warn('No configuration file found - using default config.');
-    } else sylog.warn('No configuration file found - using default config.');
+        sylog.info('Loaded configuration from package.json (release-hub field)', {
+          label: 'CONFIG',
+        });
+      } else sylog.debug('No configuration file found - using default config.');
+    } else sylog.debug('No configuration file found - using default config.');
   }
 
   const parsed = ConfigSchema.safeParse(userConfig);
