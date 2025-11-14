@@ -16,6 +16,12 @@ export class VersionContext {
     });
   }
 
+  async logNewVersions(versions: TargetVersionMap): Promise<void> {
+    Object.entries(versions).forEach(([key, value]) => {
+      sylog.info(`${key} new version: ${value}`);
+    });
+  }
+
   async currentVersions(): Promise<TargetVersionMap> {
     if (this._cachedCurrentVersions) return this._cachedCurrentVersions;
 

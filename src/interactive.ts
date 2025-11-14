@@ -69,5 +69,7 @@ export default async function interactive() {
 
   const newVersions = await version.newVersions(releaseType, answers.preReleaseType);
 
+  await version.logNewVersions(newVersions);
+
   await writeVersion(newVersions);
 }
