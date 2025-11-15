@@ -18,12 +18,39 @@
       "enum": ["major", "minor", "patch"]
     },
     "targets": {
+      "description": "Which manifest targets to update their version fields.",
       "default": {
         "node": true,
         "jsr": false,
         "deno": false
       },
-      "description": "Defines which manifest files to update their version fields.",
+      "type": "object",
+      "properties": {
+        "node": {
+          "description": "Update version in package.json (Node.js).",
+          "default": true,
+          "type": "boolean"
+        },
+        "jsr": {
+          "description": "Update version in jsr.json (JSR registry).",
+          "default": false,
+          "type": "boolean"
+        },
+        "deno": {
+          "description": "Update version in deno.json or deno.jsonc (Deno project).",
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "targetsPath": {
+      "description": "Custom file paths for each manifest target, overriding their default locations.",
+      "default": {
+        "node": "./package.json",
+        "jsr": "./jsr.json",
+        "deno": "./deno.json"
+      },
       "type": "object",
       "properties": {
         "node": {
@@ -45,7 +72,7 @@
       "additionalProperties": false
     },
     "sync": {
-      "description": "Controls version sync behavior for targets.",
+      "description": "Defines how versions across multiple targets should stay synchronized.",
       "default": true,
       "anyOf": [
         {
@@ -68,7 +95,7 @@
       ]
     },
     "hooks": {
-      "description": "Shell commands to run at various lifecycle stages. Each key is a lifecycle hook name and the value is the command(s) to run.",
+      "description": "Lifecycle hooks to run before/after release commands.",
       "type": "object",
       "propertyNames": {
         "type": "string",

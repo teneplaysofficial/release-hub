@@ -23,3 +23,20 @@ export const TargetsSchema = z
 export type Targets = z.infer<typeof TargetsSchema>;
 export type TargetKeys = keyof Targets;
 export type TargetVersionMap = Partial<Record<TargetKeys, string | null>>;
+
+const defaultPaths: Record<TargetKeys, string> = {
+  node: './package.json',
+  jsr: './jsr.json',
+  deno: './deno.json',
+};
+
+export const TargetsPathSchema = z
+  .object(
+    Object.fromEntries(
+      Object.entries(defaultPaths).map(([k, v]) => [
+        k,
+        z.string().default(v).describe(`Path for ${k} manifest file.`).optional(),
+      ]),
+    ),
+  )
+  .describe('Defines custom paths to manifest files for each target.');
