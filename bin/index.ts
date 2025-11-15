@@ -3,8 +3,8 @@ import interactive from '../src/interactive';
 import sylog from 'sylog';
 import { printName } from '../src/utils/printName';
 import { help } from '../src/utils/help';
-import { config } from '../src/config/loadConfig';
 import { runHook } from '../src/run/hook';
+import { config, setConfig } from '../src/config/loadConfig';
 
 try {
   const args = process.argv.slice(2);
@@ -28,6 +28,8 @@ try {
   if (flags.has('--debug')) {
     sylog.enableDebug();
   }
+
+  await setConfig();
 
   if (flags.has('--dry-run')) {
     config.dryRun = true;

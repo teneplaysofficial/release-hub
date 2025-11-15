@@ -68,4 +68,9 @@ async function loadConfig(cwd = process.cwd()) {
   return parsed.data;
 }
 
-export const config = await loadConfig();
+export const config: Config = {};
+
+export async function setConfig() {
+  const _cachedConfig = await loadConfig();
+  Object.assign(config, _cachedConfig);
+}

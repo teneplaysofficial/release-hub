@@ -18,7 +18,7 @@ export const ConfigSchema = z
     targets: TargetsSchema.default(TargetsSchema.parse({}))
       .optional()
       .describe('Which manifest targets to update their version fields.'),
-    targetsPath: TargetsSchema.default(TargetsPathSchema.parse({}))
+    targetsPath: TargetsPathSchema.default(TargetsPathSchema.parse({}))
       .optional()
       .describe('Custom file paths for each manifest target, overriding their default locations.'),
     sync: SyncSchema.optional().describe(

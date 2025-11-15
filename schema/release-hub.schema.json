@@ -54,19 +54,19 @@
       "type": "object",
       "properties": {
         "node": {
-          "description": "Update version in package.json (Node.js).",
-          "default": true,
-          "type": "boolean"
+          "description": "Path for node manifest file.",
+          "default": "./package.json",
+          "type": "string"
         },
         "jsr": {
-          "description": "Update version in jsr.json (JSR registry).",
-          "default": false,
-          "type": "boolean"
+          "description": "Path for jsr manifest file.",
+          "default": "./jsr.json",
+          "type": "string"
         },
         "deno": {
-          "description": "Update version in deno.json or deno.jsonc (Deno project).",
-          "default": false,
-          "type": "boolean"
+          "description": "Path for deno manifest file.",
+          "default": "./deno.json",
+          "type": "string"
         }
       },
       "additionalProperties": false

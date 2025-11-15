@@ -1,4 +1,5 @@
 import z from 'zod';
+import { defaultPaths } from '../../../utils/content';
 
 export const TargetsSchema = z
   .object({
@@ -23,12 +24,6 @@ export const TargetsSchema = z
 export type Targets = z.infer<typeof TargetsSchema>;
 export type TargetKeys = keyof Targets;
 export type TargetVersionMap = Partial<Record<TargetKeys, string | null>>;
-
-const defaultPaths: Record<TargetKeys, string> = {
-  node: './package.json',
-  jsr: './jsr.json',
-  deno: './deno.json',
-};
 
 export const TargetsPathSchema = z
   .object(
