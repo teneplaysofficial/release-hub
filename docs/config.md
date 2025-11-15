@@ -2,7 +2,7 @@
 title: Configuration
 ---
 
-# Release Hub Configuration
+# Configuration
 
 Release Hub is fully configurable through a single file, letting you control every part of your release workflow - from version bumps to pre/post-release scripts.
 
@@ -59,6 +59,8 @@ You can define your configuration in **any of these files** in your project root
 
 ### TypeScript / JavaScript
 
+#### ESM
+
 ```ts
 import { defineConfig } from 'release-hub/config';
 
@@ -76,6 +78,65 @@ export default defineConfig({
     'after:commit': ['echo Commit done'],
   },
 });
+```
+
+or
+
+```ts
+export default {
+  dryRun: false,
+  defaultReleaseType: 'minor',
+  includePrerelease: true,
+  targets: {
+    node: true,
+    jsr: true,
+  },
+  sync: [['node', 'jsr']],
+  hooks: {
+    'before:init': 'echo Preparing...',
+    'after:commit': ['echo Commit done'],
+  },
+};
+```
+
+#### CommonJS
+
+```ts
+const { defineConfig } = require('release-hub/config');
+
+module.exports = defineConfig({
+  dryRun: false,
+  defaultReleaseType: 'minor',
+  includePrerelease: true,
+  targets: {
+    node: true,
+    jsr: true,
+  },
+  sync: [['node', 'jsr']],
+  hooks: {
+    'before:init': 'echo Preparing...',
+    'after:commit': ['echo Commit done'],
+  },
+});
+```
+
+or
+
+```ts
+module.exports = {
+  dryRun: false,
+  defaultReleaseType: 'minor',
+  includePrerelease: true,
+  targets: {
+    node: true,
+    jsr: true,
+  },
+  sync: [['node', 'jsr']],
+  hooks: {
+    'before:init': 'echo Preparing...',
+    'after:commit': ['echo Commit done'],
+  },
+};
 ```
 
 > TypeScript configs are compiled automatically at runtime using [Jiti](https://github.com/unjs/jiti), so you don’t need to build manually.
