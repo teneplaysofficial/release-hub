@@ -19,7 +19,7 @@ _One hub to manage every release_
 It supports:
 
 - **`package.json`** → npm, Node.js
-- **`deno.json` / `deno.jsonc`** → Deno
+- **`deno.json`** → Deno
 - **`jsr.json`** → JSR ecosystem
 
 With a single command, you can:

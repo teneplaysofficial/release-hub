@@ -41,9 +41,6 @@ export class VersionContext {
       if (await isFile('deno.json')) {
         const content = await readFileContent('deno.json');
         targetsCurrentVersion.deno = content.version;
-      } else if (await isFile('deno.jsonc')) {
-        const content = await readFileContent('deno.jsonc');
-        targetsCurrentVersion.deno = content.version;
       }
     }
     this._cachedCurrentVersions = targetsCurrentVersion;

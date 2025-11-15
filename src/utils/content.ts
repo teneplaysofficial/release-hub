@@ -74,14 +74,4 @@ export const updateVersionInFile = async (target: TargetKeys, version: string) =
       await writeFileContent(lockFilePath + 'package-lock.json', lock);
     }
   }
-
-  if (target === 'deno') {
-    if (!(await isFile(filePath))) {
-      const jsonCFilePath = getManifestDir(filePath);
-      if (!(await isFile(jsonCFilePath + 'deno.jsonc'))) return;
-      const denoC = await readFileContent(jsonCFilePath + 'deno.jsonc');
-      if ('version' in denoC) denoC.version = version;
-      await writeFileContent(jsonCFilePath + 'deno.jsonc', denoC);
-    }
-  }
 };
