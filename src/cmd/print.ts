@@ -1,8 +1,25 @@
 import ansi from 'ansilory';
 import figlet from 'figlet';
 import pkg from '../../package.json';
+import { options } from './flags';
 
-export const printName = async () => {
+const examples = ['', '-h', '-v', '--dry-run', '--interactive'];
+
+const maxFlagLength = Math.max(...options.map((opt) => opt.flags.length));
+
+export function printHelp() {
+  console.log(`
+${ansi.bold.apply('Usage:')} ${ansi.cyan.apply(pkg.name)} [options]
+
+${ansi.bold.apply('Options:')}
+${options.map((opt) => `  ${ansi.yellow.apply(opt.flags.padEnd(maxFlagLength))}  ${opt.desc}`).join('\n')}
+
+${ansi.bold.apply('Examples:')}
+${examples.map((e) => `  ${ansi.cyan.apply(`${pkg.name} ${e}`)}`).join('\n')}
+`);
+}
+
+export function printBanner() {
   return new Promise<void>((resolve, reject) => {
     figlet.text(pkg.displayName || pkg.name, { font: 'Slant' }, (err, data) => {
       if (err) {
@@ -29,4 +46,4 @@ export const printName = async () => {
       resolve();
     });
   });
-};
+}
