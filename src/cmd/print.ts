@@ -3,8 +3,7 @@ import figlet from 'figlet';
 import pkg from '../../package.json';
 import { options } from './flags';
 
-const examples = ['', '-h', '-v', '--dry-run', '--interactive'];
-
+const examples = ['', '-h', '-v', '--dry-run', '--debug', '--dry-run --debug'];
 const maxFlagLength = Math.max(...options.map((opt) => opt.flags.length));
 
 export function printHelp() {
