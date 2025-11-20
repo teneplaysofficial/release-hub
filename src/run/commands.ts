@@ -1,8 +1,7 @@
-import ansi from 'ansilory';
 import { spawn } from 'child_process';
 import sylog from 'sylog';
 
-export const runCommand = async (
+export function runCommand(
   cmd: string,
   options: {
     shell?: boolean;
@@ -10,10 +9,10 @@ export const runCommand = async (
     cwd?: string;
     env?: NodeJS.ProcessEnv;
   } = {},
-): Promise<void | string> => {
-  const { shell = true, stdio = 'inherit', cwd = process.cwd(), env = process.env } = options;
+): Promise<void | string> {
+  const { cwd = process.cwd(), env = process.env, shell = true, stdio = 'inherit' } = options;
 
-  sylog.info(ansi.gray.apply(cmd));
+  sylog.info(cmd);
 
   return new Promise((resolve, reject) => {
     const child = spawn(cmd, { shell, stdio, cwd, env });
@@ -37,4 +36,4 @@ export const runCommand = async (
       );
     }
   });
-};
+}

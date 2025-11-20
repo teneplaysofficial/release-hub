@@ -1,5 +1,5 @@
 import z from 'zod';
-import { ConfigSchema } from '../src/types/schema/config';
+import { ConfigSchema } from '../src/types/schemas/config';
 import { writeFileSync } from 'fs';
 
 writeFileSync(

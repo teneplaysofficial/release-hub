@@ -1,14 +1,18 @@
-import sylog from 'sylog';
 import inquirer from 'inquirer';
-import { config } from './config/loadConfig';
-import { PreReleaseSchema } from './types/schema/release';
-import { version } from './version';
-import { writeVersion } from './write';
+import sylog from 'sylog';
+import { config } from '../config/state';
+import { PreReleaseSchema } from '../types/schemas/release';
+import { getCurrentVersions } from '../version/current';
+import { printVersions } from '../version/print';
+import { computeNextVersions } from '../version/next';
+import { saveVersions } from '../version/write';
 
-export default async function interactive() {
-  sylog.debug('Starting interactive mode');
+export async function runPrompts() {
+  sylog.debug('Running interactive flow');
 
-  await version.logCurrentVersions();
+  const currentVersions = await getCurrentVersions();
+
+  printVersions(currentVersions, 'current');
 
   const answers = await inquirer.prompt([
     {
@@ -67,9 +71,11 @@ export default async function interactive() {
 
   if (answers.isPreRelease) releaseType = `pre${releaseType}`;
 
-  const newVersions = await version.newVersions(releaseType, answers.preReleaseType);
+  const nextVersions = computeNextVersions(currentVersions, releaseType, answers.preReleaseType);
 
-  await version.logNewVersions(newVersions);
+  printVersions(nextVersions, 'next');
 
-  await writeVersion(newVersions);
+  await saveVersions(nextVersions);
+
+  sylog.debug('Interactive flow completed');
 }
