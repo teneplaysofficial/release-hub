@@ -4,6 +4,7 @@ import { ConfigSchema } from './schemas/config';
 import { PreReleaseSchema, ReleaseTypeSchema } from './schemas/release';
 import { TargetsSchema } from './schemas/config/targets';
 import { JSON_MANIFEST_FILES } from '../config/constants';
+import { NPM_ACCESS_LEVELS } from './schemas/config/npm';
 
 export type HookPhase = 'before' | 'after';
 export type HookEvent = 'init' | 'version' | 'commit' | 'tag' | 'push' | 'publish';
@@ -36,3 +37,5 @@ export interface JSONLockManifestContent {
     }
   >;
 }
+
+export type NpmAccessLevels = z.infer<typeof NPM_ACCESS_LEVELS>;

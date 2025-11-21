@@ -3,6 +3,7 @@ import { TargetsPathSchema, TargetsSchema } from './targets';
 import { StableReleaseTypeSchema } from '../release';
 import { SyncSchema } from './sync';
 import { HooksSchema } from './hooks';
+import { npmSchema } from './npm';
 
 export const ConfigSchema = z
   .object({
@@ -22,6 +23,7 @@ export const ConfigSchema = z
       'Defines how versions across multiple targets should stay synchronized.',
     ),
     hooks: HooksSchema.describe('Lifecycle hooks to run before/after release commands.'),
+    npm: npmSchema.default(npmSchema.parse({})).describe('npm configuration.'),
   })
   .partial()
   .strict();
