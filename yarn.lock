@@ -2527,7 +2527,7 @@ keyv@^4.5.4:
 
 kolory@1.1.2:
   version "1.1.2"
-  resolved "https://registry.npmjs.org/kolory/-/kolory-1.1.2.tgz"
+  resolved "https://registry.yarnpkg.com/kolory/-/kolory-1.1.2.tgz#d5f233170f88c7e9924a0f4669f997a3656e8c00"
   integrity sha512-KVIhCeGn6fZAK+ueIvQ1gA9pCgUjhdAmunvbGji3hQJEuTyj7IA3pRkNaRFB30kEXSNkehg7O/DuJ0SjYPmczQ==
 
 levn@^0.4.1:
@@ -3725,10 +3725,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-sylog@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/sylog/-/sylog-2.0.0.tgz#85a061d07228ea903734b140b7d88f5be073de29"
-  integrity sha512-DcRHzDGS8XGXQPzuVAj1YzCupQXLiFgDJkC+jci4je9DcNXkjivm+r8BG4UDLFXdTodjImA/fpdbuhy0awphZA==
+sylog@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/sylog/-/sylog-2.1.0.tgz#0e66bd2a68ab6f5edaee559b79b84f7b7489193f"
+  integrity sha512-k7o4TXapGXUPRTWL4lkL9/lG3UgoDTp9kJ1YNEdXlhvfbpFtZZEbhjpmj3kwQOdYzIAFczuVoWF6yr0MN1IGuA==
   dependencies:
     ansilory "2.0.1"
 

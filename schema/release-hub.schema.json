@@ -18,12 +18,13 @@
       "enum": ["major", "minor", "patch"]
     },
     "targets": {
+      "description": "Which manifest targets to update their version fields.",
       "default": {
         "node": true,
         "jsr": false,
-        "deno": false
+        "deno": false,
+        "webext": false
       },
-      "description": "Defines which manifest files to update their version fields.",
       "type": "object",
       "properties": {
         "node": {
@@ -37,15 +38,53 @@
           "type": "boolean"
         },
         "deno": {
-          "description": "Update version in deno.json or deno.jsonc (Deno project).",
+          "description": "Update version in deno.json (Deno project).",
+          "default": false,
+          "type": "boolean"
+        },
+        "webext": {
+          "description": "Update version in any WebExtension manifest.json (Chrome, Firefox, Edge, Opera, Brave, Safari).",
           "default": false,
           "type": "boolean"
         }
       },
       "additionalProperties": false
     },
+    "targetsPath": {
+      "description": "Custom file paths for each manifest target, overriding their default locations.",
+      "default": {
+        "node": "./package.json",
+        "jsr": "./jsr.json",
+        "deno": "./deno.json",
+        "webext": "./manifest.json"
+      },
+      "type": "object",
+      "properties": {
+        "node": {
+          "description": "Path to the manifest package.json file.",
+          "default": "./package.json",
+          "type": "string"
+        },
+        "jsr": {
+          "description": "Path to the manifest jsr.json file.",
+          "default": "./jsr.json",
+          "type": "string"
+        },
+        "deno": {
+          "description": "Path to the manifest deno.json file.",
+          "default": "./deno.json",
+          "type": "string"
+        },
+        "webext": {
+          "description": "Path to the manifest manifest.json file.",
+          "default": "./manifest.json",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
     "sync": {
-      "description": "Controls version sync behavior for targets.",
+      "description": "Defines how versions across multiple targets should stay synchronized.",
       "default": true,
       "anyOf": [
         {
@@ -61,14 +100,14 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["node", "jsr", "deno"]
+              "enum": ["node", "jsr", "deno", "webext"]
             }
           }
         }
       ]
     },
     "hooks": {
-      "description": "Shell commands to run at various lifecycle stages. Each key is a lifecycle hook name and the value is the command(s) to run.",
+      "description": "Lifecycle hooks to run before/after release commands.",
       "type": "object",
       "propertyNames": {
         "type": "string",

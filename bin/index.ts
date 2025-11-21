@@ -1,45 +1,42 @@
-import pkg from '../package.json';
-import interactive from '../src/interactive';
 import sylog from 'sylog';
-import { printName } from '../src/utils/printName';
-import { help } from '../src/utils/help';
-import { config } from '../src/config/loadConfig';
-import { runHook } from '../src/run/hook';
+import { knownFlags } from '../src/cmd/flags';
+import { Flag } from '../src/types';
+import pkg from '../package.json';
+import { printBanner, printHelp } from '../src/cmd/print';
+import { config, setConfig } from '../src/config/state';
+import { runPrompts } from '../src/core/prompts';
+import { runHook } from '../src/run/hooks';
 
 try {
-  const args = process.argv.slice(2);
+  const args = new Set<Flag>(
+    process.argv.slice(2).filter((arg): arg is Flag => knownFlags.includes(arg)),
+  );
 
-  const flags = new Set(args);
-
-  if (flags.has('--help') || flags.has('-h')) {
-    help();
-    process.exit(0);
-  }
-
-  if (flags.has('--version') || flags.has('-v')) {
+  if (args.has('-v') || args.has('--version')) {
     console.log(pkg.version);
     process.exit(0);
   }
 
-  await printName();
+  if (args.has('-h') || args.has('--help')) {
+    printHelp();
+    process.exit(0);
+  }
 
+  await printBanner();
+
+  if (args.has('-D') || args.has('--debug')) sylog.enableDebug();
+
+  await setConfig();
   await runHook('before:init');
 
-  if (flags.has('--debug')) {
-    sylog.enableDebug();
-  }
-
-  if (flags.has('--dry-run')) {
+  if (args.has('-d') || args.has('--dry-run')) {
     config.dryRun = true;
-    sylog.info('Dry Run Mode Enabled No actual changes will be made, all operations are simulated');
+    sylog.dryrun('No changes will be applied, all actions are simulated');
   }
 
-  if (!args.length || flags.has('--interactive') || flags.has('--dry-run')) {
-    await interactive();
-  }
-
+  await runPrompts();
   await runHook('after:init');
-} catch (error) {
-  sylog.error((error as Error).message);
+} catch (err) {
+  sylog.error((err as Error).message);
   process.exit(1);
 }

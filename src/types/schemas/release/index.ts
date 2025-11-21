@@ -1,5 +1,13 @@
 import z from 'zod';
 
+export const StableReleaseTypeSchema = z
+  .enum(['major', 'minor', 'patch'])
+  .describe('Stable release types');
+
+export const PreReleaseTypeSchema = z
+  .enum(['premajor', 'preminor', 'prepatch'])
+  .describe('Prerelease types');
+
 export const PreReleaseSchema = z
   .enum([
     'alpha',
@@ -21,15 +29,7 @@ export const PreReleaseSchema = z
     'test',
     'unstable',
   ])
-  .describe('Allowed prerelease identifiers such as alpha, beta, rc, canary, etc.');
-
-export const StableReleaseTypeSchema = z
-  .enum(['major', 'minor', 'patch'])
-  .describe('Stable release types');
-
-export const PreReleaseTypeSchema = z
-  .enum(['premajor', 'preminor', 'prepatch'])
-  .describe('Prerelease types');
+  .describe('Allowed prerelease identifiers.');
 
 export const MetaReleaseTypeSchema = z
   .enum(['prerelease', 'release'])

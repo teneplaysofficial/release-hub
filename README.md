@@ -14,33 +14,26 @@ _One hub to manage every release_
 
 ## Overview
 
-`release-hub` is a smart, unified release management CLI that keeps your versions consistent across ecosystems.
+**Release Hub** is a unified command-line toolkit for automating and managing project releases.
+It provides a consistent, cross-ecosystem workflow for versioning, changelog generation, metadata synchronization, and release automation, all through a single streamlined interface. Designed to be both developer-friendly and CI-ready, Release Hub brings clarity and reliability to release workflows without locking you into any specific platform or ecosystem.
 
-It supports:
+### Why Release Hub?
 
-- **`package.json`** → npm, Node.js
-- **`deno.json` / `deno.jsonc`** → Deno
-- **`jsr.json`** → JSR ecosystem
-
-With a single command, you can:
-
-- Bump versions across all files
-- Generate changelogs from conventional commits
-- Sync metadata automatically
-- Integrate into CI/CD (GitHub Actions, etc.)
+Most release tools are fragmented or tied to a single platform. Release Hub offers a unified, extensible approach that balances automation with manual control while remaining simple and predictable in both local development and CI environments.
 
 ## Features
 
-- **Multi-format support:** Works with `package.json`, `deno.json`, `jsr.json`, and more
-- **Semantic versioning:** `major`, `minor`, `patch`, or auto via commits
-- **Auto-sync:** Keeps all manifest versions in sync
-- **Custom release hooks:** Run scripts before/after bumps
-- **Conventional Commit aware:** Generate changelogs automatically
-- **CI-friendly:** Ideal for GitHub Actions, GitLab, or local workflows
+- Automated semantic versioning with minimal setup
+- Interactive mode for manual release workflows
+- Multi-format manifest support
+- Automatic version synchronization across all project files
+- Custom release hooks for before/after bumps scripts
+- Conventional Commit based changelog generation
+- Fully CI-friendly for GitHub Actions, GitLab CI, and others
 
 ## Documentation
 
-For full documentation, visit [teneplaysofficial.github.io](https://teneplaysofficial.github.io/release-hub)
+Full documentation is available at [teneplaysofficial.github.io](https://teneplaysofficial.github.io/release-hub)
 
 ## Install
 

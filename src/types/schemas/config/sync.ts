@@ -1,5 +1,6 @@
 import z from 'zod';
-import { TargetKeys, TargetsSchema } from './targets';
+import { TargetsSchema } from './targets';
+import { TargetKeys } from '../..';
 
 export const SyncSchema = z
   .union([
