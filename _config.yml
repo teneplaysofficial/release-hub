@@ -1,8 +1,8 @@
 title: Release Hub
 description: One hub to manage every release
 theme: just-the-docs
-url: https://teneplaysofficial.github.io
-baseurl: /release-hub
+url: https://release-hub.js.org
+baseurl: ''
 repository: teneplaysofficial/release-hub
 
 permalink: pretty
