@@ -25,5 +25,6 @@ export const npmSchema = z
       .min(100000, 'OTP must be a 6-digit number')
       .max(999999, 'OTP must be a 6-digit number')
       .describe('One-time password for npm two-factor authentication.'),
+    skipChecks: z.boolean().default(false).describe('Whether to skip npm pre-publish checks.'),
   })
   .partial();
