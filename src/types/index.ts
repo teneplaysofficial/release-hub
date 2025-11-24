@@ -25,6 +25,7 @@ export type TargetsMap = Partial<Record<TargetKeys, string>>;
 
 export type JSONManifestFile = (typeof JSON_MANIFEST_FILES)[number];
 export interface JSONManifestContent extends JSONLockManifestContent {
+  name: string;
   version: string;
   [key: string]: unknown;
 }
