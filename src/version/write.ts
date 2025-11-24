@@ -33,7 +33,7 @@ export async function writeTargetVersions(target: TargetKeys, version: string) {
     return;
   }
 
-  const content: JSONManifestContent = await parseJSON(await readFileContent(filePath));
+  const content: JSONManifestContent = parseJSON(await readFileContent(filePath));
 
   if (!content) {
     sylog.debug(`Failed to parse manifest file: ${filePath}`);
@@ -53,7 +53,7 @@ export async function writeTargetVersions(target: TargetKeys, version: string) {
         return;
       }
 
-      const lockContent: JSONManifestContent = await parseJSON(await readFileContent(lockFilePath));
+      const lockContent: JSONManifestContent = parseJSON(await readFileContent(lockFilePath));
 
       if (!lockContent) {
         sylog.debug(`Failed to parse package-lock.json: ${lockFilePath}`);
