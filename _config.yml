@@ -4,7 +4,7 @@ theme: just-the-docs
 url: https://release-hub.js.org
 baseurl: ''
 repository: teneplaysofficial/release-hub
-
+favicon_ico: '/assets/images/favicon.svg'
 permalink: pretty
 
 source: docs
