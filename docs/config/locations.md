@@ -7,7 +7,7 @@ nav_order: 2
 
 # {{ page.title }}
 
-{{ page.description }}
+{{ page.description }}.
 
 {{ site.title }} automatically loads configuration from any of the following files:
 

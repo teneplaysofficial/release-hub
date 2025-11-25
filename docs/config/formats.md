@@ -7,9 +7,9 @@ nav_order: 3
 
 # {{ page.title }}
 
-{{ page.description }}
+{{ page.description }}.
 
-Below are fully working examples for each supported format
+Below are fully working examples for each supported format:
 
 ## JSON
 
