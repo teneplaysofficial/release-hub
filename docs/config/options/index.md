@@ -8,7 +8,7 @@ parent: Configuration
 
 {{ page.description }}
 
-{{ site.title }} supports configuration through `JSON`, `JavaScript`, `TypeScript`, and `package.json`. To see the defaults applied when no config is provided, check the [Default Settings](./default.md).
+{{ site.title }} supports configuration through `JSON`, `JavaScript`, `TypeScript`, and `package.json`. To see the defaults applied when no config is provided, check the [Default Settings](../default.md).
 
 ## Available Options
 

@@ -18,7 +18,6 @@ Below are fully working examples for each supported format
   "$schema": "https://cdn.jsdelivr.net/npm/release-hub@latest/schema/release-hub.schema.json",
   "dryRun": false,
   "defaultReleaseType": "patch",
-  "includePrerelease": false,
   "targets": {
     "node": true,
     "deno": true,
@@ -42,7 +41,6 @@ import { defineConfig } from 'release-hub/config';
 export default defineConfig({
   dryRun: false,
   defaultReleaseType: 'minor',
-  includePrerelease: true,
   targets: {
     node: true,
     jsr: true,
@@ -61,7 +59,6 @@ or
 export default {
   dryRun: false,
   defaultReleaseType: 'minor',
-  includePrerelease: true,
   targets: {
     node: true,
     jsr: true,
@@ -82,7 +79,6 @@ export default {
 const config = {
   dryRun: false,
   defaultReleaseType: 'minor',
-  includePrerelease: true,
   targets: {
     node: true,
     jsr: true,
@@ -105,7 +101,6 @@ const { defineConfig } = require('release-hub/config');
 module.exports = defineConfig({
   dryRun: false,
   defaultReleaseType: 'minor',
-  includePrerelease: true,
   targets: {
     node: true,
     jsr: true,
@@ -124,7 +119,6 @@ or
 module.exports = {
   dryRun: false,
   defaultReleaseType: 'minor',
-  includePrerelease: true,
   targets: {
     node: true,
     jsr: true,
@@ -145,7 +139,6 @@ module.exports = {
 module.exports = {
   dryRun: false,
   defaultReleaseType: 'minor',
-  includePrerelease: true,
   targets: {
     node: true,
     jsr: true,
