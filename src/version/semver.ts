@@ -1,6 +1,7 @@
 import semver from 'semver';
-import { PreReleaseType, ReleaseType } from '../types';
+import { NpmDistTags, PreReleaseType, ReleaseType } from '../types';
 import sylog from 'sylog';
+import { NPM_DIST_TAGS } from '../types/schemas/config/npm';
 
 export function isValidVersion(version: string) {
   return !!semver.valid(version);
@@ -33,4 +34,15 @@ export function bumpVersion(version: string, type: ReleaseType, identifier?: Pre
   );
 
   return semver.inc(version, bumpType, identifier || '') || undefined;
+}
+
+export function getDistTag(version: string): NpmDistTags | undefined {
+  const parsed = semver.parse(version);
+  if (!parsed) return;
+
+  const tag = parsed.prerelease[0];
+  if (!tag) return 'latest';
+
+  const res = NPM_DIST_TAGS.safeParse(tag);
+  return res.success ? res.data : 'latest';
 }

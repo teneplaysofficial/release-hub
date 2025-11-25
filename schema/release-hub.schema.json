@@ -126,6 +126,90 @@
           }
         ]
       }
+    },
+    "npm": {
+      "description": "npm configuration.",
+      "default": {
+        "access": "public",
+        "publish": false,
+        "tag": "latest",
+        "skipChecks": false
+      },
+      "type": "object",
+      "properties": {
+        "access": {
+          "description": "The access level for the published package.",
+          "default": "public",
+          "type": "string",
+          "enum": ["public", "restricted"]
+        },
+        "publish": {
+          "description": "Whether to publish the package to npm.",
+          "default": false,
+          "type": "boolean"
+        },
+        "publishArgs": {
+          "description": "Additional arguments to pass to the npm publish command.",
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string",
+                "enum": ["--provenance"]
+              }
+            ]
+          }
+        },
+        "tag": {
+          "description": "The npm dist-tag to use when publishing.",
+          "default": "latest",
+          "anyOf": [
+            {
+              "description": "Allowed prerelease identifiers.",
+              "type": "string",
+              "enum": [
+                "alpha",
+                "beta",
+                "canary",
+                "dev",
+                "draft",
+                "edge",
+                "experimental",
+                "insider",
+                "internal",
+                "next",
+                "nightly",
+                "pre",
+                "preview",
+                "prototype",
+                "rc",
+                "snapshot",
+                "test",
+                "unstable"
+              ]
+            },
+            {
+              "type": "string",
+              "const": "latest"
+            }
+          ]
+        },
+        "otp": {
+          "description": "One-time password for npm two-factor authentication.",
+          "type": "integer",
+          "minimum": 100000,
+          "maximum": 999999
+        },
+        "skipChecks": {
+          "description": "Whether to skip npm pre-publish checks.",
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false
