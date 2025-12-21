@@ -1,0 +1,27 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          registry-url: https://registry.npmjs.org
+          node-version-file: package.json
+          cache: yarn
+      - run: |
+          yarn install --frozen-lockfile
+          yarn build
+          npm publish
