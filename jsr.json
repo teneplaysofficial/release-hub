@@ -5,8 +5,5 @@
   "exports": {
     ".": "./bin/index.ts",
     "./config": "./src/config/index.ts"
-  },
-  "publish": {
-    "include": ["bin", "src", "LICENSE", "README.md"]
   }
 }

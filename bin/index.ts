@@ -1,7 +1,7 @@
 import sylog from 'sylog';
 import { knownFlags } from '../src/cmd/flags';
 import { Flag } from '../src/types';
-import pkg from '../package.json';
+import pkg from '../package.json' with { type: 'json' };
 import { printBanner, printHelp } from '../src/cmd/print';
 import { config, setConfig } from '../src/config/state';
 import { runPrompts } from '../src/core/prompts';
