@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*.*.*'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -22,6 +23,34 @@ jobs:
           node-version-file: package.json
           cache: yarn
       - run: |
+          set -e
           yarn install --frozen-lockfile
           yarn build
+
+          echo "Running publishing step"
+
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            echo "Triggered via workflow_dispatch — using latest git tag"
+            REF="$(git describe --tags --abbrev=0)"
+          else
+            echo "Triggered via tag push"
+            REF="${GITHUB_REF_NAME}"
+          fi
+
+          VERSION="${REF#v}"   
+
+          echo "Publishing version $VERSION"
+
+          if [[ "$VERSION" == *"-"* ]]; then
+            PRERELEASE="${VERSION#*-}"
+            TAG="${PRERELEASE%%.*}"
+
+            if [[ ! "$TAG" =~ ^[0-9]+$ ]]; then
+              echo "Publishing prerelease with tag '$TAG'"
+              npm publish --tag "$TAG"
+              exit 0
+            fi
+          fi
+
+          echo "Publishing stable release with tag 'latest'"
           npm publish

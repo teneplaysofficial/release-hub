@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/teneplaysofficial/release-hub"
+    "url": "git+https://github.com/teneplaysofficial/release-hub.git"
   },
   "homepage": "https://teneplaysofficial.github.io/release-hub",
   "author": {
@@ -45,7 +45,7 @@
   "engineStrict": true,
   "type": "module",
   "bin": {
-    "release-hub": "./dist/index.js"
+    "release-hub": "dist/index.js"
   },
   "exports": {
     "./config": {
