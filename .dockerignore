@@ -1,0 +1,47 @@
+# dependencies
+node_modules
+
+# logs & cache
+*.log
+.cache
+coverage
+.nyc_output
+*.tsbuildinfo
+
+# env / secrets
+.env
+.env.*
+
+# git / ci / tooling
+.git
+.husky
+.github
+.gitignore
+.gitattributes
+renovate.json
+docker-compose.yml
+Dockerfile
+
+# editors
+.vscode
+.idea
+
+# docs & site
+docs
+_site
+README.md
+LICENSE
+
+# ruby
+Gemfile
+Gemfile.lock
+
+# release-hub
+.release-hub.*
+release-hub.*
+schema
+
+# linters
+eslint.config.*
+
+test
