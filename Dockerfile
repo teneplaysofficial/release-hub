@@ -11,14 +11,14 @@ RUN yarn build
 
 # ---------- runtime stage ----------
 FROM node:22-alpine
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 WORKDIR /app
 
 COPY package.json yarn.lock ./
 RUN yarn install --production --frozen-lockfile
+COPY --from=build --chown=appuser:appgroup /app/dist ./dist
 
-COPY --from=build /app/dist ./dist
-
-RUN chmod +x dist/index.js
+USER appuser
 
 ENTRYPOINT ["node", "dist/index.js"]
