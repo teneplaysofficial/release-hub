@@ -24,7 +24,7 @@ export async function loadConfig(cwd = process.cwd()) {
     sylog.debug(`Found: ${file}`);
 
     if (file.endsWith('.json')) {
-      userConfig = await parseJSON(await readFileContent(filePath));
+      userConfig = parseJSON(await readFileContent(filePath));
     } else {
       const jiti = createJiti(import.meta.url);
       const mod = (await jiti.import(filePath)) as Record<string, unknown>;

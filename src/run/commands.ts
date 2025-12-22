@@ -1,3 +1,4 @@
+import ansi from 'ansilory';
 import { spawn } from 'child_process';
 import sylog from 'sylog';
 
@@ -12,7 +13,7 @@ export function runCommand(
 ): Promise<void | string> {
   const { cwd = process.cwd(), env = process.env, shell = true, stdio = 'inherit' } = options;
 
-  sylog.info(cmd);
+  sylog.info(ansi.dim.apply(cmd));
 
   return new Promise((resolve, reject) => {
     const child = spawn(cmd, { shell, stdio, cwd, env });

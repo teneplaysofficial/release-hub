@@ -21,7 +21,7 @@ export async function getCurrentVersions() {
       continue;
     }
 
-    const content = await parseJSON(await readFileContent(manifestPath));
+    const content = parseJSON(await readFileContent(manifestPath));
 
     if (!content?.version) {
       sylog.debug(`No "version" field found for target "${target}" in file: ${manifestPath}`);
