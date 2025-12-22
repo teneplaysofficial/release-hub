@@ -144,6 +144,18 @@ docker run --rm \
  tenedev/release-hub:latest ci
 ```
 
+> [!TIP]
+> When mounting your project directory into the container, `release-hub` will update files on your host system.
+> 
+> Use `:ro` for dry runs.
+> 
+> ```sh
+> docker run --rm \
+>  -v "$PWD:/workspace:ro" \
+>  -w /workspace \
+>  tenedev/release-hub:latest ci
+> ```
+
 #### Using Versioned Tags (Recommended for CI)
 
 For reproducible builds, pin a specific version:
