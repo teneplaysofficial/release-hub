@@ -36,9 +36,9 @@ Most release tools are fragmented or tied to a single platform. Release Hub offe
 
 Full documentation is available at [teneplaysofficial.github.io](https://teneplaysofficial.github.io/release-hub)
 
-## Install
+## Installation & Usage
 
-### Global Install
+### Global Installation
 
 Install `release-hub` globally to use it anywhere:
 
@@ -83,6 +83,81 @@ Run directly without installing:
 ```sh
 npx release-hub
 ```
+
+### Docker
+
+- Run `release-hub` using Docker - no Node.js, npm, or global installs required.
+- This is the recommended way to use Release Hub in CI pipelines or clean environments.
+
+#### Pull the Image
+
+```sh
+docker pull tenedev/release-hub:latest
+```
+
+#### Basic Usage
+
+Run `release-hub` in the current project directory:
+
+```sh
+docker run --rm -it \
+ -v "$(pwd):/workspace" \
+ -w /workspace \
+ tenedev/release-hub:latest
+```
+
+**What these flags mean:**
+
+- `--rm` - Automatically removes the container after it exits.
+- `-it` - Enables interactive mode (useful for prompts and CLI output).
+- `-v "$(pwd):/workspace"` - Mounts your current project into the container.
+- `-w /workspace` - Sets the working directory inside the container.
+
+#### Running Commands & Flags
+
+You can pass any `release-hub` command or flag directly:
+
+```sh
+docker run --rm -it \
+ -v "$(pwd):/workspace" \
+ -w /workspace \
+ tenedev/release-hub:latest <command> [flags]
+```
+
+**Example:**
+
+```sh
+docker run --rm -it \
+ -v "$(pwd):/workspace" \
+ -w /workspace \
+ tenedev/release-hub:latest -h
+```
+
+#### CI-Friendly Usage (Non-Interactive)
+
+For CI environments (GitHub Actions, GitLab CI, etc.), omit `-it`:
+
+```sh
+docker run --rm \
+ -v "$PWD:/workspace" \
+ -w /workspace \
+ tenedev/release-hub:latest ci
+```
+
+#### Using Versioned Tags (Recommended for CI)
+
+For reproducible builds, pin a specific version:
+
+```sh
+docker run --rm -it \
+ -v "$(pwd):/workspace" \
+ -w /workspace \
+ tenedev/release-hub:1.0.0
+```
+
+> [!NOTE]
+> `latest` always tracks the newest stable release.
+> Pin versions in CI for safety.
 
 ## License
 
