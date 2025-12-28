@@ -146,9 +146,9 @@ docker run --rm \
 
 > [!TIP]
 > When mounting your project directory into the container, `release-hub` will update files on your host system.
-> 
+>
 > Use `:ro` for dry runs.
-> 
+>
 > ```sh
 > docker run --rm \
 >  -v "$PWD:/workspace:ro" \
