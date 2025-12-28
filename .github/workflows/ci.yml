@@ -26,13 +26,23 @@ jobs:
           yarn gen
           yarn fmt .
       - run: |
-          isDiff=$(git --no-pager diff --color)
+          isDiff=$(git --no-pager diff)
+
           if [ -n "$isDiff" ]; then
-            echo "The following files are not up to date:"
+            echo "────────────────────────────────────────"
+            echo "This file isn’t up to date"
+            echo "────────────────────────────────────────"
             echo ""
-            git diff --name-only | sed 's/^/  - /'
+            git diff --name-only \
+            | sed 's/^/  - /'
             echo ""
-            echo "::error::Generated or formatted files are out of date. Please run 'yarn gen' and 'yarn fmt .' locally."
+            echo "────────────────────────────────────────"
+            echo "Actual diff:"
+            echo "────────────────────────────────────────"
+            echo ""
+            git --no-pager diff
+            echo ""
+            echo "::error::Generated or formatted files are out of date. Please run 'pnpm gen' and 'pnpm fmt .' locally."
             exit 1
           else
             echo "No changes detected. All generated files are up to date."
