@@ -141,13 +141,26 @@
         "allowedBranches": [],
         "requireDefaultBranch": true,
         "defaultBranch": "main",
-        "commit": true,
-        "commitMessage": "chore: bump version to {{version}}",
-        "commitArgs": [],
-        "tag": true,
-        "tagAnnotation": "Release {{version}}",
-        "push": true,
-        "pushArgs": ["--follow-tags"]
+        "author": {
+          "name": "github-actions[bot]",
+          "email": "41898282+github-actions[bot]@users.noreply.github.com"
+        },
+        "stage": ".",
+        "commit": {
+          "enabled": true,
+          "message": "chore: bump version to {{version}}",
+          "args": []
+        },
+        "tag": {
+          "enabled": true,
+          "majorTag": false,
+          "majorMinorTag": false,
+          "annotation": "Release {{version}}"
+        },
+        "push": {
+          "enabled": true,
+          "args": ["--follow-tags"]
+        }
       },
       "type": "object",
       "properties": {
@@ -166,15 +179,7 @@
           "default": [],
           "type": "array",
           "items": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["main", "master", "develop"]
-              }
-            ]
+            "type": "string"
           }
         },
         "requireDefaultBranch": {
@@ -189,6 +194,10 @@
         },
         "author": {
           "description": "Temporary git author to use for commit and tag. Does not modify git config.",
+          "default": {
+            "name": "github-actions[bot]",
+            "email": "41898282+github-actions[bot]@users.noreply.github.com"
+          },
           "type": "object",
           "properties": {
             "name": {
@@ -204,50 +213,151 @@
           },
           "additionalProperties": false
         },
+        "stage": {
+          "description": "Files or options to stage before committing (maps to `git add`).",
+          "default": ".",
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [".", "-A", "-f", "-u"]
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [".", "-A", "-f", "-u"]
+              }
+            }
+          ]
+        },
         "commit": {
-          "description": "Whether to create a git commit for the version bump.",
-          "default": true,
-          "type": "boolean"
-        },
-        "commitMessage": {
-          "description": "The commit message to use for the version bump. Use {{version}} as a placeholder for the new version.",
-          "default": "chore: bump version to {{version}}",
-          "type": "string"
-        },
-        "commitArgs": {
-          "description": "Additional arguments to pass to the git commit command.",
-          "default": [],
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": ["--no-verify"]
-          }
+          "description": "Commit configuration for version bump releases.",
+          "default": {
+            "enabled": true,
+            "message": "chore: bump version to {{version}}",
+            "args": []
+          },
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "description": "Whether to create a git commit for the version bump.",
+              "default": true,
+              "type": "boolean"
+            },
+            "message": {
+              "description": "The commit message to use for the version bump. Use {{version}} as a placeholder for the new version.",
+              "default": "chore: bump version to {{version}}",
+              "type": "string"
+            },
+            "args": {
+              "description": "Additional arguments to pass to the git commit command.",
+              "default": [],
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["--no-verify"]
+                  }
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
         },
         "tag": {
-          "description": "Whether to create a git tag for the new version.",
-          "default": true,
-          "type": "boolean"
-        },
-        "tagAnnotation": {
-          "description": "The annotation message to use for the git tag. Use {{version}} as a placeholder for the new version.",
-          "default": "Release {{version}}",
-          "type": "string"
+          "description": "Tagging configuration for git releases.",
+          "default": {
+            "enabled": true,
+            "majorTag": false,
+            "majorMinorTag": false,
+            "annotation": "Release {{version}}"
+          },
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "description": "Whether to create a git tag for the new version.",
+              "default": true,
+              "type": "boolean"
+            },
+            "majorTag": {
+              "description": "Create or update a floating major tag (e.g. `v1`). Skipped automatically for prerelease versions.",
+              "default": false,
+              "type": "boolean"
+            },
+            "majorMinorTag": {
+              "description": "Create or update a floating major.minor tag (e.g. `v1.0`). Skipped automatically for prerelease versions.",
+              "default": false,
+              "type": "boolean"
+            },
+            "annotation": {
+              "description": "The annotation message to use for the git tag. Use {{version}} as a placeholder for the new version.",
+              "default": "Release {{version}}",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
         },
         "push": {
-          "description": "Whether to push the commit and tag to the remote repository.",
-          "default": true,
-          "type": "boolean"
-        },
-        "pushArgs": {
-          "description": "Additional arguments to pass to the git push command.",
-          "default": ["--follow-tags"],
-          "type": "array",
-          "items": {
-            "type": "string",
-            "enum": ["--follow-tags", "--no-verify"]
-          }
+          "description": "Push configuration for publishing commits and tags to the remote repository.",
+          "default": {
+            "enabled": true,
+            "args": ["--follow-tags"]
+          },
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "description": "Whether to push the commit and tag to the remote repository.",
+              "default": true,
+              "type": "boolean"
+            },
+            "args": {
+              "description": "Additional arguments to pass to the git push command.",
+              "default": ["--follow-tags"],
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["--follow-tags", "--no-verify"]
+                  }
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
         }
       },
+      "required": [
+        "requireCleanWorkingTree",
+        "requireUpstreamBranch",
+        "allowedBranches",
+        "requireDefaultBranch",
+        "defaultBranch",
+        "author",
+        "stage",
+        "commit",
+        "tag",
+        "push"
+      ],
       "additionalProperties": false
     }
   },
