@@ -90,6 +90,7 @@
   },
   "dependencies": {
     "ansilory": "^2.0.1",
+    "arglet": "^1.0.0",
     "figlet": "^1.9.3",
     "handlebars": "^4.7.8",
     "inquirer": "^12.10.0",

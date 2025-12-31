@@ -7,6 +7,7 @@ import { HooksSchema } from './hooks';
 export const ConfigSchema = z
   .object({
     $schema: z.string().optional().describe('Path to the JSON schema for IDE autocompletion.'),
+    debug: z.boolean().default(false),
     dryRun: z
       .boolean()
       .default(false)
