@@ -13,6 +13,9 @@ _One hub to manage every release_
 [![Docker Pulls](https://img.shields.io/docker/pulls/tenedev/release-hub?logo=docker&color=brightgreen)](https://hub.docker.com/r/tenedev/release-hub)
 [![License](https://img.shields.io/github/license/teneplaysofficial/release-hub?color=brightgreen&logo=spdx&label=LICENSE)](https://github.com/teneplaysofficial/release-hub/blob/main/LICENSE)
 
+> [!WARNING]
+> **Release Hub is now archived and no longer maintained.** It has been redesigned as **[Revola](https://github.com/teneplaysofficial/revola)**, a modern plugin-based release system that overcomes the limitations of Release Hub with better extensibility, flexibility, and future-ready architecture. Please migrate to Revola for ongoing updates and support.
+
 ## Overview
 
 **Release Hub** is a unified command-line toolkit for automating and managing project releases.
