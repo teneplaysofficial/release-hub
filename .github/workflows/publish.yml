@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: teneplaysofficial/docker-publish@v1
+      - uses: teneplaysofficial/docker-publish@176cf0618aad07d74f04ec337a8ef79c8bbe732c # v2
         with:
           image_repo: tenedev/release-hub
           version: ${{ github.ref_name }}
